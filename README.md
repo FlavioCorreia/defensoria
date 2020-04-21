@@ -1,2 +1,2 @@
 # defensoria
-Desenvolvimento de app para a defensoria pública de limoeiro
+Desenvolvimento de app para a defensoria pública de limoeiro do norte
