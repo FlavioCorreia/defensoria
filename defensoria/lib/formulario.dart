@@ -140,7 +140,7 @@ Widget buildTextFieldM(String label, String prefix, TextEditingController c, Tex
   );
 }
 
-void _showDialog(context, String titulo, String mensagem) {
+void _showDialog(context, String titulo, String mensagem){
     Color corFundo; //COR DE FUNDO MUDA DE ACORDO COM O ESTADO AZUL -> OK / LARANJA -> !OK
     titulo == "" ? corFundo = Colors.blue : corFundo = Color.fromARGB(255, 247, 149, 0);
     showDialog(
@@ -150,13 +150,14 @@ void _showDialog(context, String titulo, String mensagem) {
           shape: RoundedRectangleBorder( borderRadius: BorderRadius.circular(15.0)),
           backgroundColor: corFundo,
           title: Text(titulo, style: TextStyle(fontSize: 22, color: Colors.white), textAlign: TextAlign.center),
-          content: new Text(mensagem, style: TextStyle(fontSize: 20, color: Colors.white), textAlign: TextAlign.justify,),
+          content: Text(mensagem, style: TextStyle(fontSize: 20, color: Colors.white), textAlign: TextAlign.justify,),
           actions: <Widget>[
-            new FlatButton(
+            FlatButton(
+              shape: RoundedRectangleBorder( borderRadius: BorderRadius.circular(15.0)),
               color: Colors.white,
               textColor: corFundo,
               padding: EdgeInsets.fromLTRB(30, 5, 30, 5),
-              child: new Text("OK", style: TextStyle(fontSize: 20)),
+              child: Text("OK", style: TextStyle(fontSize: 20)),
               onPressed: () {
                 Navigator.of(context).pop();
               },
