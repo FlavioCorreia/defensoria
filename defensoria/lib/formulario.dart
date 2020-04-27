@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 
@@ -7,7 +8,7 @@ class Formulario extends StatefulWidget {
 }
 
 class _FormularioState extends State<Formulario> {
-  //CONTROLADORES
+  //CONTROLADORES E BOOLEANOS DE VALIDAÇÃO
   final _cNomeMae = new TextEditingController();            bool _valNomeMae = true;
   final _cCPFMae = new TextEditingController();             bool _valCPFMae = true;
   final _cFoneMae = new TextEditingController();            bool _valFoneMae = true;
@@ -78,12 +79,15 @@ class _FormularioState extends State<Formulario> {
                 if(_valNomeMae && _valCPFMae && _valFoneMae && _valNomePai && _valCPFPai &&
                     _valEnderecoPai && _valNomeCrianca && _valCPFCrianca && _valDataCrianca){
                   //SE TODOS OS CAMPOS ESTIVEREM CORRETOS
-                  print("Tudo Certo");
-                }else{ print("Deu Ruim"); }
+                  _showDialog(context, "", "Formulário enviado com sucesso.");
+                }else{
+                  _showDialog(context, "Campos Incorretos", "Alguns campos não foram preenchidos corretamente, reinforme os campos destacados.");
+                }
               },
-              child: Text('Enviar Formulario', style: TextStyle(fontSize: 20),),
+              child: Text('Enviar Formulario', style: TextStyle(fontSize: 22),),
               textColor: Colors.white,
               color: Colors.blue,
+              padding: EdgeInsets.fromLTRB(30, 8, 30, 8),
             )
           ],
         )
@@ -135,3 +139,31 @@ Widget buildTextFieldM(String label, String prefix, TextEditingController c, Tex
     keyboardType: tit,
   );
 }
+
+void _showDialog(context, String titulo, String mensagem) {
+    Color corFundo; //COR DE FUNDO MUDA DE ACORDO COM O ESTADO AZUL -> OK / LARANJA -> !OK
+    titulo == "" ? corFundo = Colors.blue : corFundo = Color.fromARGB(255, 247, 149, 0);
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          shape: RoundedRectangleBorder( borderRadius: BorderRadius.circular(15.0)),
+          backgroundColor: corFundo,
+          title: Text(titulo, style: TextStyle(fontSize: 22, color: Colors.white), textAlign: TextAlign.center),
+          content: new Text(mensagem, style: TextStyle(fontSize: 20, color: Colors.white), textAlign: TextAlign.justify,),
+          actions: <Widget>[
+            new FlatButton(
+              color: Colors.white,
+              textColor: corFundo,
+              padding: EdgeInsets.fromLTRB(30, 5, 30, 5),
+              child: new Text("OK", style: TextStyle(fontSize: 20)),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
+
