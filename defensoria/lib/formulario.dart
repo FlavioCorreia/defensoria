@@ -35,7 +35,7 @@ class _FormularioState extends State<Formulario> {
   final _cCidadePai = new TextEditingController();          bool _valCidadePai = true;
 
   final _cNomeCrianca = new TextEditingController();        bool _valNomeCrianca = true;
-  List<String> _listaNomes = ["Angelo Gonzales Oliveira", "Artur Silva Costa"];//List();
+  List<String> _listaNomes = List();
 
   //MASCARAS pubspec => mask_text_input_formatter: ^1.0.6
   final maskCPFMae = new MaskTextInputFormatter(mask: '###.###.###-##', filter: { "#": RegExp(r'[0-9]') });
@@ -69,7 +69,6 @@ class _FormularioState extends State<Formulario> {
                     setState(() {
                       _listaNomes.add(_cNomeCrianca.text);
                       _cNomeCrianca.clear();
-                      print(_listaNomes[_listaNomes.length-1]);
                     });
                   }
               ),
@@ -79,14 +78,30 @@ class _FormularioState extends State<Formulario> {
                 itemCount: _listaNomes.length,
                 itemBuilder: (context, index) {
                   return Container( padding: EdgeInsets.only(top: 8),
-                      //child: Text(_listaNomes[index], style: TextStyle(fontSize: 22))
                       child: Dismissible(
                         key: Key( DateTime.now().millisecondsSinceEpoch.toString()),
+                        background: Container(
+                          color: Colors.orange,
+                          child: Align(
+                            alignment: Alignment(-0.85, 0),
+                            child: Icon(Icons.delete, color: Colors.redAccent),
+                          ),
+                        ),
                         direction: DismissDirection.startToEnd,
-                        child: Text(_listaNomes[index], style: TextStyle(fontSize: 22)),
-                            //secondary: CircleAvatar( child: Icon(Icons.cancel, color: Colors.redAccent)),
-                            //onChanged: (cheked){},
-                        //)
+                        child: CheckboxListTile(
+                                  title: Text(_listaNomes[index], style: TextStyle(fontSize: 22)),
+                                  value: _listaNomes[index]!="",
+                                  onChanged: (checked){//APAGAR QUANDO DERMARCA O CHECK BOX DO NOME
+                                    setState(() {
+                                      _listaNomes.removeAt(index);
+                                    });
+                                  }
+                        ),
+                        onDismissed: (direction){//APAGAR QUANDO ARRASTA P/ DIREITA
+                          setState(() {
+                            _listaNomes.removeAt(index);
+                          });
+                        }
                       )
                   );
                 }
