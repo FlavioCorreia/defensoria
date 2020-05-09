@@ -35,14 +35,11 @@ class _FormularioState extends State<Formulario> {
   final _cCidadePai = new TextEditingController();          bool _valCidadePai = true;
 
   final _cNomeCrianca = new TextEditingController();        bool _valNomeCrianca = true;
-  final _cCPFCrianca = new TextEditingController();         bool _valCPFCrianca = true;
-  final _cDataCrianca = new TextEditingController();        bool _valDataCrianca = true;
+  List<String> _listaNomes = ["Angelo Gonzales Oliveira", "Artur Silva Costa"];//List();
 
   //MASCARAS pubspec => mask_text_input_formatter: ^1.0.6
-  final maskFone = new MaskTextInputFormatter(mask: '(##) # ####-####', filter: { "#": RegExp(r'[0-9]') });
   final maskCPFMae = new MaskTextInputFormatter(mask: '###.###.###-##', filter: { "#": RegExp(r'[0-9]') });
   final maskCPFPai = new MaskTextInputFormatter(mask: '###.###.###-##', filter: { "#": RegExp(r'[0-9]') });
-  final maskCPFFilho = new MaskTextInputFormatter(mask: '###.###.###-##', filter: { "#": RegExp(r'[0-9]') });
   final maskData = new MaskTextInputFormatter(mask: '##/##/####', filter: { "#": RegExp(r'[0-9]') });
 
   //CORES
@@ -66,11 +63,34 @@ class _FormularioState extends State<Formulario> {
             buildTextField("Nome Completo", "Nome: ", _cNomeCrianca, TextInputType.text, _valNomeCrianca),
             Align(
               alignment: Alignment.centerRight,
-              child: RaisedButton( child: Text("ADICIONAR"), textColor: Colors.white, color: Colors.blue,
-                  onPressed: (){}
+              child: RaisedButton( child: Text("ADICIONAR", style: TextStyle(fontSize: 18)), textColor: Colors.white, color: Colors.blue,
+                  onPressed: (){
+                    if (_cNomeCrianca.text.isEmpty || _cNomeCrianca.text == "") return null;
+                    setState(() {
+                      _listaNomes.add(_cNomeCrianca.text);
+                      _cNomeCrianca.clear();
+                      print(_listaNomes[_listaNomes.length-1]);
+                    });
+                  }
               ),
             ),
-
+            ListView.builder(
+                shrinkWrap: true,
+                itemCount: _listaNomes.length,
+                itemBuilder: (context, index) {
+                  return Container( padding: EdgeInsets.only(top: 8),
+                      //child: Text(_listaNomes[index], style: TextStyle(fontSize: 22))
+                      child: Dismissible(
+                        key: Key( DateTime.now().millisecondsSinceEpoch.toString()),
+                        direction: DismissDirection.startToEnd,
+                        child: Text(_listaNomes[index], style: TextStyle(fontSize: 22)),
+                            //secondary: CircleAvatar( child: Icon(Icons.cancel, color: Colors.redAccent)),
+                            //onChanged: (cheked){},
+                        //)
+                      )
+                  );
+                }
+            ),
             Divider(height: 10, color: Colors.white),
             Divider(height: 35, color: Colors.blue),
 
@@ -135,12 +155,10 @@ class _FormularioState extends State<Formulario> {
                  _cCPFPai.text.length != 14  ? _valCPFPai = false : _valCPFPai = true;
                  _cEnderecoPai.text.isEmpty ? _valEnderecoPai = false : _valEnderecoPai  = true;
                  _cNomeCrianca.text.isEmpty ? _valNomeCrianca = false : _valNomeCrianca = true;
-                 _cCPFCrianca.text.length != 14 ? _valCPFCrianca = false : _valCPFCrianca = true;
-                 _cDataCrianca.text.length != 10 ? _valDataCrianca = false : _valDataCrianca = true; // // => 2
                 });
 
                 if(_valNomeMae && _valCPFMae  && _valNomePai && _valCPFPai && _valEnderecoPai
-                    && _valNomeCrianca && _valCPFCrianca && _valDataCrianca){//SE TODOS OS CAMPOS ESTIVEREM CORRETOS
+                    && _valNomeCrianca){//SE TODOS OS CAMPOS ESTIVEREM CORRETOS
                   _showDialog(context, "", "Formulário enviado com sucesso.");
                 }else{
                   _showDialog(context, "Campos Incorretos", "Alguns campos não foram preenchidos corretamente, reinforme os campos destacados.");
