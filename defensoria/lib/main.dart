@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:defensoria/formulario.dart';
+import 'package:defensoria/tela_inicial.dart';
 
 void main(){
   runApp(MyApp());
@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
           color: Colors.blue,
         ),
       ),
-      home: Formulario(),
+      home: TelaInicial(),
       debugShowCheckedModeBanner: false,
     );
   }
