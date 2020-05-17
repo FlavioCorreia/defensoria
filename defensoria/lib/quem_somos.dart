@@ -5,6 +5,7 @@ class QuemSomos extends StatefulWidget {
   _QuemSomosState createState() => _QuemSomosState();
 }
 
+Color temaVerde = Color.fromRGBO(66, 192, 177, 1);
 class _QuemSomosState extends State<QuemSomos> {
   @override
   Widget build(BuildContext context) {
@@ -12,6 +13,7 @@ class _QuemSomosState extends State<QuemSomos> {
         appBar: AppBar(
           title: Text("Quem Somos", style: TextStyle(fontSize: 24)),
           centerTitle: true,
+          backgroundColor: temaVerde,
         ),
       body: Column(
         children: <Widget>[

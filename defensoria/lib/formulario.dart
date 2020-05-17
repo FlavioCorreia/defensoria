@@ -8,6 +8,7 @@ class Formulario extends StatefulWidget {
   _FormularioState createState() => _FormularioState();
 }
 
+Color temaVerde = Color.fromRGBO(66, 192, 177, 1);
 class _FormularioState extends State<Formulario> {
   //CONTROLADORES DOS CAMPOS DE ENTRADA E BOOLEANOS DE VALIDAÇÃO DOS MESMOS
   final _cNomeMae = new TextEditingController();            bool _valNomeMae = true;
@@ -42,16 +43,14 @@ class _FormularioState extends State<Formulario> {
   final maskCPFPai = new MaskTextInputFormatter(mask: '###.###.###-##', filter: { "#": RegExp(r'[0-9]') });
   final maskData = new MaskTextInputFormatter(mask: '##/##/####', filter: { "#": RegExp(r'[0-9]') });
 
-  //CORES
-  static const Color colorPrimary = Color.fromARGB(255, 51, 51, 51); //EXEMPLO COR
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text( "Formulario De Solicitação",
-            style: TextStyle(fontSize: 24)),
+        title: Text( "Formulário De Solicitação",
+            style: TextStyle(fontSize: 22)),
         centerTitle: true,
+        backgroundColor: temaVerde,
       ),
       body: SingleChildScrollView(
         padding: EdgeInsets.all(10),
@@ -63,7 +62,7 @@ class _FormularioState extends State<Formulario> {
             buildTextField("Nome Completo", "Nome: ", _cNomeCrianca, TextInputType.text, _valNomeCrianca),
             Align(
               alignment: Alignment.centerRight,
-              child: RaisedButton( child: Text("ADICIONAR", style: TextStyle(fontSize: 18)), textColor: Colors.white, color: Colors.blue,
+              child: RaisedButton( child: Text("ADICIONAR", style: TextStyle(fontSize: 18)), textColor: Colors.white, color: temaVerde,
                   onPressed: (){
                     if (_cNomeCrianca.text.isEmpty || _cNomeCrianca.text == "") return null;
                     setState(() {
@@ -84,18 +83,21 @@ class _FormularioState extends State<Formulario> {
                           color: Colors.orange,
                           child: Align(
                             alignment: Alignment(-0.85, 0),
-                            child: Icon(Icons.delete, color: Colors.redAccent),
+                            child: Icon(Icons.delete, color: Colors.red),
                           ),
                         ),
                         direction: DismissDirection.startToEnd,
-                        child: CheckboxListTile(
-                                  title: Text(_listaNomes[index], style: TextStyle(fontSize: 22)),
-                                  value: _listaNomes[index]!="",
-                                  onChanged: (checked){//APAGAR QUANDO DERMARCA O CHECK BOX DO NOME
+                        child: Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: <Widget>[
+                                Expanded(child: Text(_listaNomes[index], style: TextStyle(fontSize: 22))),
+                                IconButton(tooltip: "Apagar nome", icon: Icon(Icons.delete, color: Colors.redAccent),
+                                  onPressed: (){
                                     setState(() {
                                       _listaNomes.removeAt(index);
                                     });
                                   }
+                                )
+                              ]
                         ),
                         onDismissed: (direction){//APAGAR QUANDO ARRASTA P/ DIREITA
                           setState(() {
@@ -107,7 +109,7 @@ class _FormularioState extends State<Formulario> {
                 }
             ),
             Divider(height: 10, color: Colors.white),
-            Divider(height: 35, color: Colors.blue),
+            Divider(height: 35, color: temaVerde),
 
             Divider(height: 10, color: Colors.white),
             Text('Informações Da Mãe', style: TextStyle(fontSize: 25)),
@@ -134,7 +136,7 @@ class _FormularioState extends State<Formulario> {
             Divider(height: 10, color: Colors.white),
             buildTextField("Cidade", "", _cCidadeMae, TextInputType.text, _valCidadeMae),
 
-            Divider(height: 35, color: Colors.blue),
+            Divider(height: 35, color: temaVerde),
             Divider(height: 10, color: Colors.white),
             Text('Informações Do Pai', style: TextStyle(fontSize: 25)),
             Divider(height: 10, color: Colors.white),
@@ -160,7 +162,7 @@ class _FormularioState extends State<Formulario> {
             Divider(height: 10, color: Colors.white),
             buildTextField("Cidade", "", _cCidadePai, TextInputType.text, _valCidadePai),
 
-            Divider(height: 35, color: Colors.blue),
+            Divider(height: 35, color: temaVerde),
             RaisedButton(
               onPressed: () {
                 setState(() { // SE ALGUM CAMPO ESTIVER VAZIO OU INCOMPLETO, TORNE-O INVALIDO
@@ -181,7 +183,7 @@ class _FormularioState extends State<Formulario> {
               },
               child: Text('Enviar Formulario', style: TextStyle(fontSize: 22),),
               textColor: Colors.white,
-              color: Colors.blue,
+              color: temaVerde,
               padding: EdgeInsets.fromLTRB(30, 8, 30, 8),
             )
           ],
@@ -199,7 +201,7 @@ Widget buildTextField(String label, String prefix, TextEditingController c, Text
       labelStyle: TextStyle(color: Colors.black),
       border: OutlineInputBorder(),
       prefixText: prefix,
-      enabledBorder: OutlineInputBorder( borderSide: BorderSide(color: Colors.blue)),
+      enabledBorder: OutlineInputBorder( borderSide: BorderSide(color: temaVerde)),
       focusedBorder: OutlineInputBorder( borderSide: BorderSide(color: Colors.orange)),
       errorText: !validator ? "Informe uma entrada válida" : null,
     ),
@@ -223,7 +225,7 @@ Widget buildTextFieldM(String label, String prefix, TextEditingController c, Tex
         labelStyle: TextStyle(color: Colors.black),
         border: OutlineInputBorder(),
         prefixText: prefix,
-        enabledBorder: OutlineInputBorder( borderSide: BorderSide(color: Colors.blue)),
+        enabledBorder: OutlineInputBorder( borderSide: BorderSide(color: temaVerde)),
         focusedBorder: OutlineInputBorder( borderSide: BorderSide(color: Colors.orange)),
         errorText: !validator ? "Informe uma entrada válida" : null,
     ),
@@ -238,7 +240,7 @@ Widget buildTextFieldM(String label, String prefix, TextEditingController c, Tex
 
 void _showDialog(context, String titulo, String mensagem){
     Color corFundo; //COR DE FUNDO MUDA DE ACORDO COM O ESTADO AZUL -> OK / LARANJA -> !OK
-    titulo == "" ? corFundo = Colors.blue : corFundo = Color.fromARGB(255, 247, 149, 0);
+    titulo == "" ? corFundo = temaVerde : corFundo = Color.fromARGB(255, 247, 149, 0);
     showDialog(
       context: context,
       builder: (BuildContext context) {
