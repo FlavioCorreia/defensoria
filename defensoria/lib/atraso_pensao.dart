@@ -21,6 +21,6 @@ class _AtrasoPensaoState extends State<AtrasoPensao> {
 
             ]
         )
-    );;
+    );
   }
 }
