@@ -15,7 +15,11 @@ class _Forlumario_1State extends State<Forlumario_1> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        title: Text( "Formulário De Solicitação", style: TextStyle(fontSize: 22)),
+        centerTitle: true,
+        backgroundColor: fHelper.temaVerde,
+      ),
       body: SingleChildScrollView(
         padding: EdgeInsets.all(10),
         child: Column(
