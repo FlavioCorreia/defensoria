@@ -31,34 +31,32 @@ class _Formulario_2State extends State<Formulario_2 > {
         ),
         body: SingleChildScrollView(
           padding: EdgeInsets.all(10),
-          child: Column(
+          child: Wrap( //Column
+            runSpacing: 60,
             children: <Widget>[
-              Divider(height: 10, color: Colors.white),
               Text('Informações Da Mãe', style: TextStyle(fontSize: 25)),
-              Divider(height: 10, color: Colors.white),
               fHelper.buildTextField("Nome Completo Da Mãe", "Nome: ", _cNomeMae, TextInputType.text, _valNomeMae),
-              Divider(height: 10, color: Colors.white),
               fHelper.buildTextField("Nacionalidade", "", _cNacionalidadeMae, TextInputType.text, _valNacionalidadeMae),
-              Divider(height: 10, color: Colors.white),
               fHelper.buildTextFieldM("Estado Civil", "", _cEstadoCivilMae, TextInputType.text, _valEstadoCivilMae),
-              Divider(height: 10, color: Colors.white),
               fHelper.buildTextField("Profissão", "", _cProfissaoMae, TextInputType.text, _valProfissaoMae),
-              Divider(height: 10, color: Colors.white),
               fHelper.buildTextField("RG", "", _cRGMae, TextInputType.number, _valRGMae),
-              Divider(height: 10, color: Colors.white),
               fHelper.buildTextFieldM("CPF", "", _cCPFMae, TextInputType.number, _valCPFMae),
-              Divider(height: 10, color: Colors.white),
               fHelper.buildTextField("Endereço", "Rua: ", _cEnderecoMae, TextInputType.text, _valEnderecoMae),
-              Divider(height: 10, color: Colors.white),
               fHelper.buildTextField("Número Da Casa", "Nº: ", _cNumeroCasaMae, TextInputType.number, _valNumeroCasaMae),
-              Divider(height: 10, color: Colors.white),
               fHelper.buildTextField("Ponto De Referência", "", _cPontoReferenciaMae, TextInputType.text, _valPontoReferenciaMae),
-              Divider(height: 10, color: Colors.white),
               fHelper.buildTextField("Bairro", "", _cBairroMae, TextInputType.text, _valBairroMae),
-              Divider(height: 10, color: Colors.white),
-              fHelper.buildTextField("Cidade", "", _cCidadeMae, TextInputType.text, _valCidadeMae)
-
-            ]
+              fHelper.buildTextField("Cidade", "", _cCidadeMae, TextInputType.text, _valCidadeMae),
+              Divider(height: 10, color: fHelper.temaVerde),
+              RaisedButton(
+                  onPressed: () {
+                    setState(() {});
+                  },
+                  child: Text('Proximo', style: TextStyle(fontSize: 22),),
+                  textColor: Colors.white,
+                  color: fHelper.temaVerde,
+                  padding: EdgeInsets.fromLTRB(30, 8, 30, 8),
+              )
+           ]
           )
         )
     );
