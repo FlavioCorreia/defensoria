@@ -10,6 +10,8 @@ class FormularioHelper{
   List<String> _listaNomes = List();
 
   bool validaCPF(String cpf){
+      if(cpf.length != 11){ return false; }
+
       int v1 = 0;
       for(int i = 0; i < 9; i++){
         v1 += int.parse(cpf[i]) * (i+1);
@@ -17,7 +19,16 @@ class FormularioHelper{
       v1 = v1 % 11;
       if(v1 == 10){ v1 = 0; }
 
-      return true;
+      int v2 = 0;
+      for(int i = 1; i < 9; i++){
+          v2 += int.parse(cpf[i]) * (i);
+      }
+      v2 += v1*9;
+      v2 = v2 % 11;
+      if(v2 == 10){ v2 = 0; }
+
+      if(v1 == int.parse(cpf[9]) && v2 == int.parse(cpf[10])){ return true;}
+      return false;
   }
 
   Widget buildTextField(String label, String prefix, TextEditingController c, TextInputType tit, bool validator, {Function f}){

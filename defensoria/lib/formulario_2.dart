@@ -51,7 +51,7 @@ class _Formulario_2State extends State<Formulario_2 > {
                   onPressed: () {
                     setState(() {});
                   },
-                  child: Text('Proximo', style: TextStyle(fontSize: 22),),
+                  child: Text('PROXIMO', style: TextStyle(fontSize: 22),),
                   textColor: Colors.white,
                   color: fHelper.temaVerde,
                   padding: EdgeInsets.fromLTRB(30, 8, 30, 8),
