@@ -9,6 +9,17 @@ class FormularioHelper{
   Color temaVerde = Color.fromRGBO(66, 192, 177, 1);
   List<String> _listaNomes = List();
 
+  bool validaCPF(String cpf){
+      int v1 = 0;
+      for(int i = 0; i < 9; i++){
+        v1 += int.parse(cpf[i]) * (i+1);
+      }
+      v1 = v1 % 11;
+      if(v1 == 10){ v1 = 0; }
+
+      return true;
+  }
+
   Widget buildTextField(String label, String prefix, TextEditingController c, TextInputType tit, bool validator, {Function f}){
     return TextField(
       controller: c,
