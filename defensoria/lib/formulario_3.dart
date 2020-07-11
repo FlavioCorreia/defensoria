@@ -31,32 +31,39 @@ class _Formulario_3State extends State<Formulario_3 > {
         ),
         body: SingleChildScrollView(
             padding: EdgeInsets.all(10),
-            child: Column(
+            child: Wrap(
+                runSpacing: 30,
                 children: <Widget>[
-                  Divider(height: 10, color: Colors.white),
                   Text('Informações Do Pai', style: TextStyle(fontSize: 25)),
-                  Divider(height: 10, color: Colors.white),
                   fHelper.buildTextField("Nome Completo Do Pai", "Nome: ", _cNomePai, TextInputType.text, _valNomePai),
-                  Divider(height: 10, color: Colors.white),
                   fHelper.buildTextField("Nacionalidade", "", _cNacionalidadePai, TextInputType.text, _valNacionalidadePai),
-                  Divider(height: 10, color: Colors.white),
-                  fHelper.buildTextFieldM("Estado Civil", "", _cEstadoCivilPai, TextInputType.text, _valEstadoCivilPai),
-                  Divider(height: 10, color: Colors.white),
+                  fHelper.buildTextField("Estado Civil", "", _cEstadoCivilPai, TextInputType.text, _valEstadoCivilPai),
                   fHelper.buildTextField("Profissão", "", _cProfissaoPai, TextInputType.text, _valProfissaoPai),
-                  Divider(height: 10, color: Colors.white),
                   fHelper.buildTextField("RG", "", _cRGPai, TextInputType.number, _valRGPai),
-                  Divider(height: 10, color: Colors.white),
-                  fHelper.buildTextFieldM("CPF", "", _cCPFPai, TextInputType.number, _valCPFPai),
-                  Divider(height: 10, color: Colors.white),
+                  fHelper.buildTextField("CPF", "", _cCPFPai, TextInputType.number, _valCPFPai),
                   fHelper.buildTextField("Endereço", "Rua: ", _cEnderecoPai, TextInputType.text, _valEnderecoPai),
-                  Divider(height: 10, color: Colors.white),
                   fHelper.buildTextField("Número Da Casa", "Nº: ", _cNumeroCasaPai, TextInputType.number, _valNumeroCasaPai),
-                  Divider(height: 10, color: Colors.white),
                   fHelper.buildTextField("Ponto De Referência", "Referência: ", _cPontoReferenciaPai, TextInputType.text, _valPontoReferenciaPai),
-                  Divider(height: 10, color: Colors.white),
                   fHelper.buildTextField("Bairro", "", _cBairroPai, TextInputType.text, _valBairroPai),
-                  Divider(height: 10, color: Colors.white),
-                  fHelper.buildTextField("Cidade", "", _cCidadePai, TextInputType.text, _valCidadePai)
+                  fHelper.buildTextField("Cidade", "", _cCidadePai, TextInputType.text, _valCidadePai),
+                  Divider(height: 10, color: fHelper.temaVerde),
+                  Align(
+                      alignment: Alignment.center,
+                      child: RaisedButton(
+                          onPressed: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(builder: (context) => Formulario_3())
+                              );
+                              setState(() {});
+                          },
+                          child: Text('FINALIZAR', style: TextStyle(fontSize: 22),),
+                          textColor: Colors.white,
+                          color: fHelper.temaVerde,
+                          padding: EdgeInsets.fromLTRB(30, 8, 30, 8),
+                      )
+                  ),
+                  Padding( padding: EdgeInsets.only(top: 70))
                 ]
             )
         )

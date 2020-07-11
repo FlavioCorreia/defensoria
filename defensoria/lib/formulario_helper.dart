@@ -53,7 +53,7 @@ class FormularioHelper{
   }
 
   //PASSANDO A MÁSCARA
-  Widget buildTextFieldM(String label, String prefix, TextEditingController c, TextInputType tit, bool validator, {MaskTextInputFormatter mask, Function f}){
+  Widget buildTextFieldM(String label, String prefix, TextEditingController c, TextInputType tit, bool validator, MaskTextInputFormatter mask, {Function f}){
     return TextField(
       scrollPadding: EdgeInsets.fromLTRB(30, 30, 30, 30),
       controller: c,

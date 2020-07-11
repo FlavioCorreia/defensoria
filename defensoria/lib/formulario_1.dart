@@ -1,12 +1,14 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:defensoria/formulario_helper.dart';
+import 'package:defensoria/formulario_2.dart';
 
-class Forlumario_1 extends StatefulWidget {
+class Formulario_1 extends StatefulWidget {
   @override
-  _Forlumario_1State createState() => _Forlumario_1State();
+  _Formulario_1State createState() => _Formulario_1State();
 }
 
-class _Forlumario_1State extends State<Forlumario_1> {
+class _Formulario_1State extends State<Formulario_1> {
   FormularioHelper fHelper = FormularioHelper();
 
   List<String> _listaNomes = List();
@@ -30,15 +32,17 @@ class _Forlumario_1State extends State<Forlumario_1> {
             fHelper.buildTextField("Nome Completo", "Nome: ", _cNomeCrianca, TextInputType.text, _valNomeCrianca),
             Align(
               alignment: Alignment.centerRight,
-              child: RaisedButton( child: Text("ADICIONAR", style: TextStyle(fontSize: 18)), textColor: Colors.white, color: fHelper.temaVerde,
-              onPressed: (){
-                if (_cNomeCrianca.text.isEmpty || _cNomeCrianca.text == "") return null;
-                  setState(() {
-                    _listaNomes.add(_cNomeCrianca.text);
-                    _cNomeCrianca.clear();
-                  });
-              }
-              ),
+              child: Padding( padding: EdgeInsets.only(top: 10),
+                  child: RaisedButton( child: Text("ADICIONAR", style: TextStyle(fontSize: 18)), textColor: Colors.white, color: fHelper.temaVerde,
+                  onPressed: (){
+                    if (_cNomeCrianca.text.isEmpty || _cNomeCrianca.text == "") return null;
+                      setState(() {
+                        _listaNomes.add(_cNomeCrianca.text);
+                        _cNomeCrianca.clear();
+                      });
+                  }
+                  ),
+              )
             ),
             ListView.builder(
               shrinkWrap: true,
@@ -75,6 +79,21 @@ class _Forlumario_1State extends State<Forlumario_1> {
                   )
                 );
               }
+            ),
+            Divider(height: 10, color: fHelper.temaVerde),
+            Padding( padding: EdgeInsets.only(top: 15)),
+            RaisedButton(
+                onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => Formulario_2())
+                    );
+                    setState(() {});
+                },
+                child: Text('PROXIMO', style: TextStyle(fontSize: 22),),
+                textColor: Colors.white,
+                color: fHelper.temaVerde,
+                padding: EdgeInsets.fromLTRB(30, 8, 30, 8),
             )
           ]
         ),

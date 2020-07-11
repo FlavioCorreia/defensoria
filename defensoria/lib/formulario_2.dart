@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:defensoria/formulario_helper.dart';
+import 'package:defensoria/formulario_3.dart';
+import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 
 class Formulario_2  extends StatefulWidget {
   @override
@@ -21,6 +23,8 @@ class _Formulario_2State extends State<Formulario_2 > {
   final _cBairroMae = new TextEditingController();          bool _valBairroMae = true;
   final _cCidadeMae = new TextEditingController();          bool _valCidadeMae = true;
 
+  final maskCPFMae = new MaskTextInputFormatter(mask: '###.###.###-##', filter: { "#": RegExp(r'[0-9]') });
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -32,31 +36,39 @@ class _Formulario_2State extends State<Formulario_2 > {
         body: SingleChildScrollView(
           padding: EdgeInsets.all(10),
           child: Wrap( //Column
-            runSpacing: 60,
+            runSpacing: 30,
             children: <Widget>[
               Text('Informações Da Mãe', style: TextStyle(fontSize: 25)),
               fHelper.buildTextField("Nome Completo Da Mãe", "Nome: ", _cNomeMae, TextInputType.text, _valNomeMae),
               fHelper.buildTextField("Nacionalidade", "", _cNacionalidadeMae, TextInputType.text, _valNacionalidadeMae),
-              fHelper.buildTextFieldM("Estado Civil", "", _cEstadoCivilMae, TextInputType.text, _valEstadoCivilMae),
+              fHelper.buildTextField("Estado Civil", "", _cEstadoCivilMae, TextInputType.text, _valEstadoCivilMae),
               fHelper.buildTextField("Profissão", "", _cProfissaoMae, TextInputType.text, _valProfissaoMae),
               fHelper.buildTextField("RG", "", _cRGMae, TextInputType.number, _valRGMae),
-              fHelper.buildTextFieldM("CPF", "", _cCPFMae, TextInputType.number, _valCPFMae),
+              fHelper.buildTextFieldM("CPF", "", _cCPFMae, TextInputType.number, _valCPFMae, maskCPFMae),
               fHelper.buildTextField("Endereço", "Rua: ", _cEnderecoMae, TextInputType.text, _valEnderecoMae),
               fHelper.buildTextField("Número Da Casa", "Nº: ", _cNumeroCasaMae, TextInputType.number, _valNumeroCasaMae),
               fHelper.buildTextField("Ponto De Referência", "", _cPontoReferenciaMae, TextInputType.text, _valPontoReferenciaMae),
               fHelper.buildTextField("Bairro", "", _cBairroMae, TextInputType.text, _valBairroMae),
               fHelper.buildTextField("Cidade", "", _cCidadeMae, TextInputType.text, _valCidadeMae),
               Divider(height: 10, color: fHelper.temaVerde),
-              RaisedButton(
+              Align(
+                alignment: Alignment.center,
+                child: RaisedButton(
                   onPressed: () {
-                    setState(() {});
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => Formulario_3())
+                      );
+                      setState(() {});
                   },
                   child: Text('PROXIMO', style: TextStyle(fontSize: 22),),
                   textColor: Colors.white,
                   color: fHelper.temaVerde,
                   padding: EdgeInsets.fromLTRB(30, 8, 30, 8),
-              )
-           ]
+                )
+              ),
+              Padding( padding: EdgeInsets.only(top: 70))
+            ]
           )
         )
     );

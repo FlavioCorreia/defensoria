@@ -4,6 +4,7 @@ import 'package:defensoria/quem_somos.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:defensoria/formulario.dart';
+import 'package:defensoria/formulario_1.dart';
 
 class TelaInicial extends StatefulWidget {
   @override
@@ -32,7 +33,7 @@ class _TelaInicialState extends State<TelaInicial> {
                 onPressed: (){
                   Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => Formulario()));
+                      MaterialPageRoute(builder: (context) => Formulario_1()));
                 },
               ),
               Divider(height: 10, color: Colors.white),
