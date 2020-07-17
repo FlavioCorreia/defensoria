@@ -5,20 +5,22 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:defensoria/formulario.dart';
 import 'package:defensoria/formulario_1.dart';
+import 'package:defensoria/formulario_helper.dart';
 
 class TelaInicial extends StatefulWidget {
   @override
   _TelaInicialState createState() => _TelaInicialState();
 }
 
-Color temaVerde = Color.fromRGBO(66, 192, 177, 1);
+//Color temaVerde = Color.fromRGBO(66, 192, 177, 1);
 class _TelaInicialState extends State<TelaInicial> {
+  FormularioHelper fHelper = FormularioHelper();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
           title: Text("Defensoria Pública", style: TextStyle(fontSize: 30)),
-          centerTitle: true, backgroundColor: temaVerde,
+          centerTitle: true, backgroundColor: fHelper.temaVerde,
         ),
         body: SingleChildScrollView(  padding: EdgeInsets.all(15), child:
           Column(
@@ -29,7 +31,7 @@ class _TelaInicialState extends State<TelaInicial> {
               RaisedButton(
                 padding: EdgeInsets.symmetric(vertical: 10),
                 child: Text("Solicitar Pensão", style: TextStyle(fontSize: 26)),
-                textColor: Colors.white, color: temaVerde,
+                textColor: Colors.white, color: fHelper.temaVerde,
                 onPressed: (){
                   Navigator.push(
                       context,
@@ -40,7 +42,7 @@ class _TelaInicialState extends State<TelaInicial> {
               RaisedButton(
                 padding: EdgeInsets.symmetric(vertical: 10),
                 child: Text("Atraso de Pensão", style: TextStyle(fontSize: 26)),
-                textColor: Colors.white, color: temaVerde,
+                textColor: Colors.white, color: fHelper.temaVerde,
                 onPressed: (){
                   Navigator.push(
                       context,
@@ -51,7 +53,7 @@ class _TelaInicialState extends State<TelaInicial> {
               RaisedButton(
                 padding: EdgeInsets.symmetric(vertical: 10),
                 child: Text("Contate-nos", style: TextStyle(fontSize: 26)),
-                textColor: Colors.white, color: temaVerde,
+                textColor: Colors.white, color: fHelper.temaVerde,
                 onPressed: (){
                   Navigator.push(
                       context,
@@ -62,7 +64,7 @@ class _TelaInicialState extends State<TelaInicial> {
               RaisedButton(
                 padding: EdgeInsets.symmetric(vertical: 10),
                 child: Text("Sobre", style: TextStyle(fontSize: 26)),
-                textColor: Colors.white, color: temaVerde,
+                textColor: Colors.white, color: fHelper.temaVerde,
                 onPressed: (){
                   Navigator.push(
                       context,

@@ -84,6 +84,7 @@ class _Formulario_1State extends State<Formulario_1> {
             Padding( padding: EdgeInsets.only(top: 15)),
             RaisedButton(
                 onPressed: () {
+                    Navigator.pop(context);
                     Navigator.push(
                       context,
                       MaterialPageRoute(builder: (context) => Formulario_2())

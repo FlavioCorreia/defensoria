@@ -38,7 +38,10 @@ class _Formulario_2State extends State<Formulario_2 > {
           child: Wrap( //Column
             runSpacing: 30,
             children: <Widget>[
-              Text('Informações Da Mãe', style: TextStyle(fontSize: 25)),
+              Align(
+                alignment: Alignment.center,
+                child:Text('Informações Da Mãe', style: TextStyle(fontSize: 25))
+              ),
               fHelper.buildTextField("Nome Completo Da Mãe", "Nome: ", _cNomeMae, TextInputType.text, _valNomeMae),
               fHelper.buildTextField("Nacionalidade", "", _cNacionalidadeMae, TextInputType.text, _valNacionalidadeMae),
               fHelper.buildTextField("Estado Civil", "", _cEstadoCivilMae, TextInputType.text, _valEstadoCivilMae),
@@ -55,11 +58,32 @@ class _Formulario_2State extends State<Formulario_2 > {
                 alignment: Alignment.center,
                 child: RaisedButton(
                   onPressed: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => Formulario_3())
-                      );
-                      setState(() {});
+                      if(_cNomeMae.text.isEmpty) { //SE N PREENCHER O NOME
+                          fHelper.buildShowDialog(context, "PREENCHIMENTO DE CAMPOS", "OPS... parece que algum campo não foi preenchido corretamente \n(Nome Completo da Mãe)");
+                          setState(() { _valNomeMae = false; });
+                          return;
+                      }else{
+                          setState(() { _valNomeMae = true; });
+                      }
+                      if(_cCPFMae.text.length == 14){//CPF 14 DIGITOS+PNTC
+                          //print(_cCPFMae.text);
+                          if(fHelper.validaCPF(_cCPFMae.text)){//SE FOR VALIDO, AVANCE
+                              setState(() {
+                                  _valCPFMae = true;
+                              });
+                              Navigator.pop(context);
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(builder: (context) => Formulario_3())
+                              );
+                          }else{
+                              fHelper.buildShowDialog(context, "PREENCHIMENTO DE CAMPOS", "OPS... parece que algum campo não foi preenchido corretamente \n(CPF)");
+                              setState(() { _valCPFMae = false; });
+                          }
+                      }else{
+                          fHelper.buildShowDialog(context, "PREENCHIMENTO DE CAMPOS", "OPS... parece que algum campo não foi preenchido corretamente \n(CPF)");
+                          setState(() { _valCPFMae = false; });
+                      }
                   },
                   child: Text('PROXIMO', style: TextStyle(fontSize: 22),),
                   textColor: Colors.white,

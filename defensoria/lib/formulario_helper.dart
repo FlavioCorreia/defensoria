@@ -6,10 +6,19 @@ class FormularioHelper{
   factory FormularioHelper() => _instance;  //SINGLETOON
   FormularioHelper.internal();  //SINGLETOON
 
-  Color temaVerde = Color.fromRGBO(66, 192, 177, 1);
+  //Color temaVerde = Color.fromRGBO(66, 192, 177, 1);
+  Color temaVerde = Color.fromRGBO(0, 130, 94, 1);
   List<String> _listaNomes = List();
 
   bool validaCPF(String cpf){
+      if(cpf.length == 14){ //ORIGINAL COM x.x.x-x
+          String cpfS = "";
+          for(int i = 0; i < 14; i++){//PEGAR DIGITOS
+              if(i != 3 && i != 7 && i != 11){cpfS += cpf[i];}
+          }
+          cpf = cpfS;
+      }
+
       if(cpf.length != 11){ return false; }
 
       int v1 = 0;
@@ -74,6 +83,34 @@ class FormularioHelper{
       onChanged: f,
       keyboardType: tit,
     );
+  }
+
+  void buildShowDialog(context, String titulo, String mensagem){
+      Color corFundo; //COR DE FUNDO MUDA DE ACORDO COM O ESTADO AZUL -> OK / LARANJA -> !OK
+      titulo == "" ? corFundo = temaVerde : corFundo = Color.fromARGB(255, 247, 149, 0);
+      showDialog(
+          context: context,
+          builder: (BuildContext context) {
+              return AlertDialog(
+                  shape: RoundedRectangleBorder( borderRadius: BorderRadius.circular(15.0)),
+                  backgroundColor: corFundo,
+                  title: Text(titulo, style: TextStyle(fontSize: 22, color: Colors.white), textAlign: TextAlign.center),
+                  content: Text(mensagem, style: TextStyle(fontSize: 20, color: Colors.white), textAlign: TextAlign.justify,),
+                  actions: <Widget>[
+                      FlatButton(
+                          shape: RoundedRectangleBorder( borderRadius: BorderRadius.circular(15.0)),
+                          color: Colors.white,
+                          textColor: corFundo,
+                          padding: EdgeInsets.fromLTRB(30, 5, 30, 5),
+                          child: Text("OK", style: TextStyle(fontSize: 20)),
+                          onPressed: () {
+                              Navigator.of(context).pop();
+                          },
+                      ),
+                  ],
+              );
+          },
+      );
   }
 
 }
