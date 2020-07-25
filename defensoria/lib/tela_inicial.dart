@@ -1,4 +1,4 @@
-import 'package:defensoria/atraso_pensao.dart';
+import 'package:defensoria/atraso_pensao_1.dart';
 import 'package:defensoria/contate.dart';
 import 'package:defensoria/quem_somos.dart';
 import 'package:flutter/cupertino.dart';
@@ -46,7 +46,7 @@ class _TelaInicialState extends State<TelaInicial> {
                 onPressed: (){
                   Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => AtrasoPensao()));
+                      MaterialPageRoute(builder: (context) => Atraso_Pensao_1()));
                 },
               ),
               Divider(height: 10, color: Colors.white),

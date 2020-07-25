@@ -3,12 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:defensoria/formulario_helper.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 
-class Formulario_3  extends StatefulWidget {
+class Atraso_Pensao_3  extends StatefulWidget {
   @override
-  _Formulario_3State createState() => _Formulario_3State();
+  _Atraso_Pensao_3State createState() => _Atraso_Pensao_3State();
 }
 
-class _Formulario_3State extends State<Formulario_3 > {
+class _Atraso_Pensao_3State extends State<Atraso_Pensao_3 > {
   FormularioHelper fHelper = FormularioHelper();
 
   final _cNomePai = new TextEditingController();            bool _valNomePai = true;
@@ -30,7 +30,7 @@ class _Formulario_3State extends State<Formulario_3 > {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text( "Formulário De Solicitação", style: TextStyle(fontSize: 22)),
+          title: Text( "Atraso de Pensão", style: TextStyle(fontSize: 22)),
           centerTitle: true,
           backgroundColor: fHelper.temaVerde,
         ),
@@ -71,7 +71,7 @@ class _Formulario_3State extends State<Formulario_3 > {
                                           MaterialPageRoute(
                                               builder: (context) => TelaInicial())
                                       );
-                                      fHelper.buildShowDialog(context, "", "FORMULARIO ENVIADO");
+                                      fHelper.buildShowDialog(context, "", "ATRASO DE PENSÃO  ENVIADO");
                                   }else{
                                       fHelper.buildShowDialog(context, "PREENCHIMENTO DE CAMPOS", "OPS... parece que algum campo não foi preenchido corretamente \n(Endereço)");
                                       setState(() { _valEnderecoPai = false; });

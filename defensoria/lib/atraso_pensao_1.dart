@@ -1,24 +1,25 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:defensoria/formulario_helper.dart';
-import 'package:defensoria/formulario_2.dart';
+import 'package:defensoria/atraso_pensao_2.dart';
 
-class Formulario_1 extends StatefulWidget {
+class Atraso_Pensao_1 extends StatefulWidget {
   @override
-  _Formulario_1State createState() => _Formulario_1State();
+  _Atraso_Pensao_1State createState() => _Atraso_Pensao_1State();
 }
 
-class _Formulario_1State extends State<Formulario_1> {
+class _Atraso_Pensao_1State extends State<Atraso_Pensao_1> {
   FormularioHelper fHelper = FormularioHelper();
 
   List<String> _listaNomes = List();
   final _cNomeCrianca = new TextEditingController();        bool _valNomeCrianca = true;
+  final _cNumeroProcesso = new TextEditingController();     bool _valNumeroProcesso = true;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text( "Formulário De Solicitação", style: TextStyle(fontSize: 22)),
+        title: Text( "Atraso de Pensão", style: TextStyle(fontSize: 22)),
         centerTitle: true,
         backgroundColor: fHelper.temaVerde,
       ),
@@ -29,6 +30,10 @@ class _Formulario_1State extends State<Formulario_1> {
             child: Column(
               children: <Widget>[
                 Divider(height: 10, color: Colors.white),
+                Text('Informações Do Processo', style: TextStyle(fontSize: 25)),
+                Divider(height: 10, color: Colors.white),
+                fHelper.buildTextField("Número Do Processo", "Nº: ", _cNumeroProcesso, TextInputType.number, _valNumeroProcesso),
+                Divider(height: 40, color: fHelper.temaVerde),
                 Text('Informações Do(s) Filho(s)', style: TextStyle(fontSize: 25)),
                 Divider(height: 10, color: Colors.white),
                 fHelper.buildTextField("Nome Completo", "Nome: ", _cNomeCrianca, TextInputType.text, _valNomeCrianca),
@@ -92,7 +97,7 @@ class _Formulario_1State extends State<Formulario_1> {
                   Navigator.pop(context);
                   Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => Formulario_2())
+                      MaterialPageRoute(builder: (context) => Atraso_Pensao_2())
                   );
                   setState(() {});
               },
@@ -101,8 +106,7 @@ class _Formulario_1State extends State<Formulario_1> {
               color: fHelper.temaVerde,
               padding: EdgeInsets.fromLTRB(30, 8, 30, 8),
           ),
-          Padding( padding: EdgeInsets.only(top: 25
-          ))
+          Padding( padding: EdgeInsets.only(top: 25))
         ]
       ))
     );
