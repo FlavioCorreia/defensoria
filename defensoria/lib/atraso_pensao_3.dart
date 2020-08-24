@@ -3,6 +3,15 @@ import 'package:flutter/material.dart';
 import 'package:defensoria/formulario_helper.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 
+import 'package:url_launcher/url_launcher.dart';
+import 'dart:core';
+
+
+import 'dart:async';
+import 'dart:io';
+import 'package:flutter_email_sender/flutter_email_sender.dart';
+//import 'package:image_picker/image_picker.dart';
+
 class Atraso_Pensao_3  extends StatefulWidget {
   @override
   _Atraso_Pensao_3State createState() => _Atraso_Pensao_3State();
@@ -65,6 +74,8 @@ class _Atraso_Pensao_3State extends State<Atraso_Pensao_3 > {
                                   setState(() { _valNomePai = true; });
                                   if(_cEnderecoPai.text.isNotEmpty){//ENDERECO
                                       setState(() {  _valEnderecoPai = true;  });
+                                      _launchURL("nemoufcrussas@gmail.com", "Atraso Pensao", "Teste");
+
                                       Navigator.pop(context);
                                       Navigator.push(
                                           context,
@@ -87,10 +98,20 @@ class _Atraso_Pensao_3State extends State<Atraso_Pensao_3 > {
                           padding: EdgeInsets.fromLTRB(30, 8, 30, 8),
                       )
                   ),
-                  Padding( padding: EdgeInsets.only(top: 70))
+                  Padding( padding: EdgeInsets.only(top:  70))
                 ]
             )
         )
     );
+  }
+
+  _launchURL(String toMailId, String subject, String body) async {
+    var url = 'mailto:$toMailId?subject=$subject&body=$body';
+    //     mailto:smith@example.org?subject=News&body=New%20plugin
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      throw 'Could not launch $url';
+    }
   }
 }
