@@ -94,12 +94,15 @@ class _Atraso_Pensao_1State extends State<Atraso_Pensao_1> {
           Padding( padding: EdgeInsets.only(top: 15)),
           RaisedButton(
               onPressed: () {
-                  Navigator.pop(context);
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => Atraso_Pensao_2())
-                  );
-                  setState(() {});
+                  //SÓ PASSA SE TIVER PREENCHIDO
+                  if(_listaNomes.length > 0 && _cNumeroProcesso.text.isNotEmpty){
+                      Navigator.pop(context);
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => Atraso_Pensao_2())
+                      );
+                      setState(() {});
+                  }
               },
               child: Text('PROXIMO', style: TextStyle(fontSize: 22),),
               textColor: Colors.white,

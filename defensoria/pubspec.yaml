@@ -27,7 +27,7 @@ dependencies:
   frideos: ^0.6.1
   url_launcher: "^3.0.1"
   flutter_email_sender: ^3.0.1
-  pdf: ^1.11.0
+ # pdf: ^1.11.0
  # syncfusion_flutter_pdf: ^18.2.54-beta
 
 dev_dependencies:

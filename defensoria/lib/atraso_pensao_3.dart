@@ -70,19 +70,37 @@ class _Atraso_Pensao_3State extends State<Atraso_Pensao_3 > {
                       child: RaisedButton(
                           onPressed: () {
                               if(_cNomePai.text.isNotEmpty){//NOME
-                                  //setState(() {  });
                                   setState(() { _valNomePai = true; });
                                   if(_cEnderecoPai.text.isNotEmpty){//ENDERECO
                                       setState(() {  _valEnderecoPai = true;  });
-                                      _launchURL("nemoufcrussas@gmail.com", "Atraso Pensao", "Teste");
-
-                                      Navigator.pop(context);
-                                      Navigator.push(
-                                          context,
-                                          MaterialPageRoute(
-                                              builder: (context) => TelaInicial())
-                                      );
-                                      fHelper.buildShowDialog(context, "", "ATRASO DE PENSÃO  ENVIADO");
+                                      if(_cNumeroCasaPai.text.length > 0){
+                                          setState(() { _valNumeroCasaPai = true;});
+                                          _launchURL("nemoufcrussas@gmail.com", "Atraso Pensão",
+                                              "|Dados do Pai|"
+                                              "|Nome do Pai: "+_cNomePai.text+"\n"+
+                                                  "|Apelido do Pai"+_cApelidoPai.text+"\n"+
+                                                  "|Nacionalidade: "+_cNacionalidadePai.text+"\n"+
+                                                  "|Estado Civil  do Pai: "+_cEstadoCivilPai.text+"\n"+
+                                                  "|Profissão do Pai: "+_cProfissaoPai.text+"\n"+
+                                                  "|RG do Pai: "+_cRGPai.text+"\n"+
+                                                  "|CPF do Pai: "+_cCPFPai.text+"\n"+
+                                                  "|Endereço: "+_cEnderecoPai.text+"\n"+
+                                                  "|Número da Casa: "+_cNumeroCasaPai.text+"\n"+
+                                                  "|Ponto de Referência: "+_cPontoReferenciaPai.text+"\n"+
+                                                  "|Bairro Pai: "+_cPontoReferenciaPai.text+"\n"+
+                                                  "|Cidade Pai: "+_cCidadePai.text+"|\n");
+//
+                                          Navigator.pop(context);
+                                          Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                  builder: (context) => TelaInicial())
+                                          );
+                                          fHelper.buildShowDialog(context, "", "ATRASO DE PENSÃO  ENVIADO");
+                                      }else{
+                                          fHelper.buildShowDialog(context, "PREENCHIMENTO DE CAMPOS", "OPS... parece que algum campo não foi preenchido corretamente \n(Número da Casa)");
+                                          setState(() { _valNumeroCasaPai = false; });
+                                      }
                                   }else{
                                       fHelper.buildShowDialog(context, "PREENCHIMENTO DE CAMPOS", "OPS... parece que algum campo não foi preenchido corretamente \n(Endereço)");
                                       setState(() { _valEnderecoPai = false; });
