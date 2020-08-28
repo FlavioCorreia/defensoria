@@ -6,7 +6,6 @@ import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'dart:core';
 
-
 import 'dart:async';
 import 'dart:io';
 import 'package:flutter_email_sender/flutter_email_sender.dart';
@@ -83,6 +82,7 @@ class _Atraso_Pensao_3State extends State<Atraso_Pensao_3 > {
                                           _launchURL("nemo.developmentufc@gmail.com", "Atraso Pensão",
                                               "Número Processo  :"+fHelper.numeroProcesso+"<br><br>"+
 
+                                              "<br>Nomes dos Filhos<br>"+
                                               nomeFilhos+
 
                                               "<br>Dados da Mãe<br>"+
@@ -94,6 +94,7 @@ class _Atraso_Pensao_3State extends State<Atraso_Pensao_3 > {
                                               "CPF da Mãe:  "+fHelper.maeInfo['cpfMae']+"<br>"+
                                               "Endereço:  "+fHelper.maeInfo['enderecoMae']+"<br>"+
                                               "Número da Casa:  "+fHelper.maeInfo['numeroCasaMae']+"<br>"+
+                                              "Ponto de Referência:  "+fHelper.maeInfo['pontoReferenciaMae']+"<br>"+
                                               "Bairro da Mãe:  "+fHelper.maeInfo['bairroMae']+"<br>"+
                                               "Cidade da Mãe:  "+fHelper.maeInfo['cidadeMae']+"<br>"+
 
@@ -112,7 +113,7 @@ class _Atraso_Pensao_3State extends State<Atraso_Pensao_3 > {
                                               "Cidade Pai:  "+_cCidadePai.text+"<br>"
                                               //
                                           );
-//
+                                          fHelper.resetaCampos();//LIMPA AS VAR DO FHELPER
                                           Navigator.pop(context);
                                           Navigator.push(
                                               context,

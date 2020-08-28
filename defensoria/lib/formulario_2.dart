@@ -65,11 +65,83 @@ class _Formulario_2State extends State<Formulario_2 > {
                       }else{
                           setState(() { _valNomeMae = true; });
                       }
+                      if(_cNacionalidadeMae.text.isEmpty){
+                          fHelper.buildShowDialog(context, "PREENCHIMENTO DE CAMPOS", "OPS... parece que algum campo não foi preenchido corretamente \n(Nacionalidade da Mãe)");
+                          setState(() { _valNacionalidadeMae = false; });
+                          return;
+                      }else{
+                          setState(() { _valNacionalidadeMae = true; });
+                      }
+                      if(_cEstadoCivilMae.text.isEmpty){
+                          fHelper.buildShowDialog(context, "PREENCHIMENTO DE CAMPOS", "OPS... parece que algum campo não foi preenchido corretamente \n(Estado Civil da Mãe)");
+                          setState(() { _valEstadoCivilMae = false; });
+                          return;
+                      }else{
+                          setState(() { _valEstadoCivilMae = true; });
+                      }
+                      if(_cProfissaoMae.text.isEmpty){
+                          fHelper.buildShowDialog(context, "PREENCHIMENTO DE CAMPOS", "OPS... parece que algum campo não foi preenchido corretamente \n(Profissão da Mãe)");
+                          setState(() { _valProfissaoMae = false; });
+                          return;
+                      }else{
+                          setState(() { _valProfissaoMae = true; });
+                      }
+                      if(_cRGMae.text.isEmpty){
+                          fHelper.buildShowDialog(context, "PREENCHIMENTO DE CAMPOS", "OPS... parece que algum campo não foi preenchido corretamente \n(RG da Mãe)");
+                          setState(() { _valRGMae = false; });
+                          return;
+                      }else{
+                          setState(() { _valRGMae = true; });
+                      }
+                      if(_cCPFMae.text.isEmpty){
+                          fHelper.buildShowDialog(context, "PREENCHIMENTO DE CAMPOS", "OPS... parece que algum campo não foi preenchido corretamente \n(CPF da Mãe)");
+                          setState(() { _valCPFMae = false; });
+                          return;
+                      }else{
+                          setState(() { _valCPFMae = true; });
+                      }
+                      if(_cEnderecoMae.text.isEmpty){
+                          fHelper.buildShowDialog(context, "PREENCHIMENTO DE CAMPOS", "OPS... parece que algum campo não foi preenchido corretamente \n(Endereço da Mãe)");
+                          setState(() { _valEnderecoMae = false; });
+                          return;
+                      }else{
+                          setState(() { _valEnderecoMae = true; });
+                      }
+                      if(_cNumeroCasaMae.text.isEmpty){
+                          fHelper.buildShowDialog(context, "PREENCHIMENTO DE CAMPOS", "OPS... parece que algum campo não foi preenchido corretamente \n(Número da Casa da Mãe)");
+                          setState(() { _valNumeroCasaMae = false; });
+                          return;
+                      }else{
+                          setState(() { _valNumeroCasaMae = true; });
+                      }
+                      if(_cBairroMae.text.isEmpty){
+                          fHelper.buildShowDialog(context, "PREENCHIMENTO DE CAMPOS", "OPS... parece que algum campo não foi preenchido corretamente \n(Bairro da Mãe)");
+                          setState(() { _valBairroMae = false; });
+                          return;
+                      }else{
+                          setState(() { _valBairroMae = true; });
+                      }
+                      if(_cCidadeMae.text.isEmpty){
+                          fHelper.buildShowDialog(context, "PREENCHIMENTO DE CAMPOS", "OPS... parece que algum campo não foi preenchido corretamente \n(Cidade da Mãe)");
+                          setState(() { _valCidadeMae = false; });
+                          return;
+                      }else{
+                          setState(() { _valCidadeMae = true; });
+                      }
+                      //
                       if(_cCPFMae.text.length == 14){//CPF 14 DIGITOS+PNTC
                           //print(_cCPFMae.text);
                           if(fHelper.validaCPF(_cCPFMae.text)){//SE FOR VALIDO, AVANCE
                               setState(() {
                                   _valCPFMae = true;
+
+                                  fHelper.preencheMapMae(_cNomeMae.text, _cNacionalidadeMae.text, _cEstadoCivilMae.text,
+                                      _cProfissaoMae.text, _cRGMae.text, _cCPFMae.text, _cEnderecoMae.text, _cNumeroCasaMae.text,
+                                      _cBairroMae.text, _cCidadeMae.text);
+
+                                  if(_cPontoReferenciaMae.text.isNotEmpty){
+                                      fHelper.preencheMapMaePontoRef("pontoReferenciaMae");
+                                  }
                               });
                               Navigator.pop(context);
                               Navigator.push(

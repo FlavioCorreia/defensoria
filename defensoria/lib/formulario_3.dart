@@ -3,6 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:defensoria/formulario_helper.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 
+import 'package:url_launcher/url_launcher.dart';
+import 'dart:core';
+
+import 'dart:async';
+import 'dart:io';
+import 'package:flutter_email_sender/flutter_email_sender.dart';
+
 class Formulario_3  extends StatefulWidget {
   @override
   _Formulario_3State createState() => _Formulario_3State();
@@ -61,17 +68,60 @@ class _Formulario_3State extends State<Formulario_3 > {
                       child: RaisedButton(
                           onPressed: () {
                               if(_cNomePai.text.isNotEmpty){//NOME
-                                  //setState(() {  });
                                   setState(() { _valNomePai = true; });
                                   if(_cEnderecoPai.text.isNotEmpty){//ENDERECO
                                       setState(() {  _valEnderecoPai = true;  });
-                                      Navigator.pop(context);
-                                      Navigator.push(
-                                          context,
-                                          MaterialPageRoute(
-                                              builder: (context) => TelaInicial())
-                                      );
-                                      fHelper.buildShowDialog(context, "", "FORMULARIO ENVIADO");
+                                      if(_cNumeroCasaPai.text.length > 0){
+                                          setState(() { _valNumeroCasaPai = true;});
+                                          String nomeFilhos = "";
+                                          for(int i = 0; i < fHelper.nomeFilhos.length; i++){
+                                              nomeFilhos +=  "Nome Filho "+i.toString()+":  "+fHelper.nomeFilhos[i] +"<br>";
+                                          }
+                                          //"nemoufcrussas@gmail.com"
+                                          _launchURL("nemo.developmentufc@gmail.com", "Atraso Pensão",
+                                                  "<br>Nomes dos Filhos<br>"+
+                                                  nomeFilhos+
+
+                                                  "<br>Dados da Mãe<br>"+
+                                                  "Nome da Mãe:  "+fHelper.maeInfo['nomeMae']+"<br>"+
+                                                  "Nacionalidade:  "+fHelper.maeInfo['nacionalidadeMae']+"<br>"+
+                                                  "Estado Civil da Mãe:  "+fHelper.maeInfo['estadoCivilMae']+"<br>"+
+                                                  "Profissão da Mãe:  "+fHelper.maeInfo['profissaoMae']+"<br>"+
+                                                  "RG da Mãe:  "+fHelper.maeInfo['rgMae']+"<br>"+
+                                                  "CPF da Mãe:  "+fHelper.maeInfo['cpfMae']+"<br>"+
+                                                  "Endereço:  "+fHelper.maeInfo['enderecoMae']+"<br>"+
+                                                  "Número da Casa:  "+fHelper.maeInfo['numeroCasaMae']+"<br>"+
+                                                  "Ponto de Referência:  "+fHelper.maeInfo['pontoReferenciaMae']+"<br>"+
+                                                  "Bairro da Mãe:  "+fHelper.maeInfo['bairroMae']+"<br>"+
+                                                  "Cidade da Mãe:  "+fHelper.maeInfo['cidadeMae']+"<br>"+
+
+                                                  "<br>Dados do Pai<br>"+
+                                                  "Nome do Pai:  "+_cNomePai.text+"<br>"+
+                                                  "Apelido do Pai:  "+_cApelidoPai.text+"<br>"+
+                                                  "Nacionalidade:  "+_cNacionalidadePai.text+"<br>"+
+                                                  "Estado Civil do Pai:  "+_cEstadoCivilPai.text+"<br>"+
+                                                  "Profissão do Pai:  "+_cProfissaoPai.text+"<br>"+
+                                                  "RG do Pai:  "+_cRGPai.text+"<br>"+
+                                                  "CPF do Pai:  "+_cCPFPai.text+"<br>"+
+                                                  "Endereço:  "+_cEnderecoPai.text+"<br>"+
+                                                  "Número da Casa:  "+_cNumeroCasaPai.text+"<br>"+
+                                                  "Ponto de Referência:  "+_cPontoReferenciaPai.text+"<br>"+
+                                                  "Bairro Pai:  "+_cPontoReferenciaPai.text+"<br>"+
+                                                  "Cidade Pai:  "+_cCidadePai.text+"<br>"
+                                              //
+                                          );
+                                          fHelper.resetaCampos();//LIMPA AS VAR DO FHELPER
+                                          Navigator.pop(context);
+                                          Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                  builder: (context) => TelaInicial())
+                                          );
+                                          fHelper.buildShowDialog(context, "", "ATRASO DE PENSÃO  ENVIADO");
+                                      }else{
+                                          fHelper.buildShowDialog(context, "PREENCHIMENTO DE CAMPOS", "OPS... parece que algum campo não foi preenchido corretamente \n(Número da Casa)");
+                                          setState(() { _valNumeroCasaPai = false; });
+                                      }
                                   }else{
                                       fHelper.buildShowDialog(context, "PREENCHIMENTO DE CAMPOS", "OPS... parece que algum campo não foi preenchido corretamente \n(Endereço)");
                                       setState(() { _valEnderecoPai = false; });
@@ -92,5 +142,15 @@ class _Formulario_3State extends State<Formulario_3 > {
             )
         )
     );
+  }
+
+  _launchURL(String toMailId, String subject, String body) async {
+      var url = 'mailto:$toMailId?subject=$subject&body=$body';
+      //     mailto:smith@example.org?subject=News&body=New%20plugin
+      if (await canLaunch(url)) {
+          await launch(url);
+      } else {
+          throw 'Could not launch $url';
+      }
   }
 }

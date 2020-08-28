@@ -15,7 +15,7 @@ class FormularioHelper{
 
       Map<String, dynamic> maeInfo = {
          "nomeMae" : "", "nacionalidadeMae" : "", "estadoCivilMae": "", "profissaoMae": "",
-         "rgMae" : "", "cpfMae" : "",  "enderecoMae" : "", "numeroCasaMae" : "", "bairroMae" : "", "cidadeMae" : "",
+         "rgMae" : "", "cpfMae" : "",  "enderecoMae" : "", "numeroCasaMae" : "", "pontoReferenciaMae": "", "bairroMae" : "", "cidadeMae" : "",
       };
 
       void resetaCampos(){

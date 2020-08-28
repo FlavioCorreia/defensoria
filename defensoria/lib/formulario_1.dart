@@ -89,12 +89,18 @@ class _Formulario_1State extends State<Formulario_1> {
           Padding( padding: EdgeInsets.only(top: 15)),
           RaisedButton(
               onPressed: () {
-                  Navigator.pop(context);
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => Formulario_2())
-                  );
-                  setState(() {});
+                if(_listaNomes.length > 0) {
+                    setState(() {
+                        for (int i = 0; i < _listaNomes.length; i++) {
+                            fHelper.adicionaFilho(_listaNomes[i]);
+                        }
+                    });
+                    Navigator.pop(context);
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => Formulario_2())
+                    );
+                 }
               },
               child: Text('PROXIMO', style: TextStyle(fontSize: 22),),
               textColor: Colors.white,
