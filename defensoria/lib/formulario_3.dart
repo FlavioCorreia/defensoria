@@ -75,7 +75,7 @@ class _Formulario_3State extends State<Formulario_3 > {
                                           setState(() { _valNumeroCasaPai = true;});
                                           String nomeFilhos = "";
                                           for(int i = 0; i < fHelper.nomeFilhos.length; i++){
-                                              nomeFilhos +=  "Nome Filho "+i.toString()+":  "+fHelper.nomeFilhos[i] +"<br>";
+                                              nomeFilhos +=  "Nome Filho "+(i+1).toString()+":  "+fHelper.nomeFilhos[i] +"<br>";
                                           }
                                           //"nemoufcrussas@gmail.com"
                                           _launchURL("nemo.developmentufc@gmail.com", "Atraso Pensão",
