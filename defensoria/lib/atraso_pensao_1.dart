@@ -96,12 +96,17 @@ class _Atraso_Pensao_1State extends State<Atraso_Pensao_1> {
               onPressed: () {
                   //SÓ PASSA SE TIVER PREENCHIDO
                   if(_listaNomes.length > 0 && _cNumeroProcesso.text.isNotEmpty){
+                      setState(() {
+                          for(int i = 0; i < _listaNomes.length; i++){
+                              fHelper.adicionaFilho(_listaNomes[i]);
+                          }
+                          fHelper.numeroProcesso = _cNumeroProcesso.text;
+                      });
                       Navigator.pop(context);
                       Navigator.push(
                           context,
                           MaterialPageRoute(builder: (context) => Atraso_Pensao_2())
                       );
-                      setState(() {});
                   }
               },
               child: Text('PROXIMO', style: TextStyle(fontSize: 22),),

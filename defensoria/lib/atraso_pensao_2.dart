@@ -114,13 +114,6 @@ class _Atraso_Pensao_2State extends State<Atraso_Pensao_2 > {
                       }else{
                           setState(() { _valNumeroCasaMae = true; });
                       }
-                      if(_cPontoReferenciaMae.text.isEmpty){
-                          fHelper.buildShowDialog(context, "PREENCHIMENTO DE CAMPOS", "OPS... parece que algum campo não foi preenchido corretamente \n(Ponto de Referência da Mãe)");
-                          setState(() { _valPontoReferenciaMae = false; });
-                          return;
-                      }else{
-                          setState(() { _valPontoReferenciaMae = true; });
-                      }
                       if(_cBairroMae.text.isEmpty){
                           fHelper.buildShowDialog(context, "PREENCHIMENTO DE CAMPOS", "OPS... parece que algum campo não foi preenchido corretamente \n(Bairro da Mãe)");
                           setState(() { _valBairroMae = false; });
@@ -141,6 +134,14 @@ class _Atraso_Pensao_2State extends State<Atraso_Pensao_2 > {
                           if(fHelper.validaCPF(_cCPFMae.text)){//SE FOR VALIDO, AVANCE
                               setState(() {
                                   _valCPFMae = true;
+
+                                  fHelper.preencheMapMae(_cNomeMae.text, _cNacionalidadeMae.text, _cEstadoCivilMae.text,
+                                      _cProfissaoMae.text, _cRGMae.text, _cCPFMae.text, _cEnderecoMae.text, _cNumeroCasaMae.text,
+                                      _cBairroMae.text, _cCidadeMae.text);
+
+                                  if(_cPontoReferenciaMae.text.isNotEmpty){
+                                      fHelper.preencheMapMaePontoRef("");
+                                  }
                               });
                               Navigator.pop(context);
                               Navigator.push(

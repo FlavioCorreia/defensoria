@@ -75,20 +75,43 @@ class _Atraso_Pensao_3State extends State<Atraso_Pensao_3 > {
                                       setState(() {  _valEnderecoPai = true;  });
                                       if(_cNumeroCasaPai.text.length > 0){
                                           setState(() { _valNumeroCasaPai = true;});
-                                          _launchURL("nemoufcrussas@gmail.com", "Atraso Pensão",
-                                              "|Dados do Pai|"
-                                              "|Nome do Pai: "+_cNomePai.text+"\n"+
-                                                  "|Apelido do Pai"+_cApelidoPai.text+"\n"+
-                                                  "|Nacionalidade: "+_cNacionalidadePai.text+"\n"+
-                                                  "|Estado Civil  do Pai: "+_cEstadoCivilPai.text+"\n"+
-                                                  "|Profissão do Pai: "+_cProfissaoPai.text+"\n"+
-                                                  "|RG do Pai: "+_cRGPai.text+"\n"+
-                                                  "|CPF do Pai: "+_cCPFPai.text+"\n"+
-                                                  "|Endereço: "+_cEnderecoPai.text+"\n"+
-                                                  "|Número da Casa: "+_cNumeroCasaPai.text+"\n"+
-                                                  "|Ponto de Referência: "+_cPontoReferenciaPai.text+"\n"+
-                                                  "|Bairro Pai: "+_cPontoReferenciaPai.text+"\n"+
-                                                  "|Cidade Pai: "+_cCidadePai.text+"|\n");
+                                          String nomeFilhos = "";
+                                          for(int i = 0; i < fHelper.nomeFilhos.length; i++){
+                                              nomeFilhos +=  "Nome Filho "+i.toString()+":  "+fHelper.nomeFilhos[i] +"<br>";
+                                          }
+                                          //"nemoufcrussas@gmail.com"
+                                          _launchURL("nemo.developmentufc@gmail.com", "Atraso Pensão",
+                                              "Número Processo  :"+fHelper.numeroProcesso+"<br><br>"+
+
+                                              nomeFilhos+
+
+                                              "<br>Dados da Mãe<br>"+
+                                              "Nome da Mãe:  "+fHelper.maeInfo['nomeMae']+"<br>"+
+                                              "Nacionalidade:  "+fHelper.maeInfo['nacionalidadeMae']+"<br>"+
+                                              "Estado Civil da Mãe:  "+fHelper.maeInfo['estadoCivilMae']+"<br>"+
+                                              "Profissão da Mãe:  "+fHelper.maeInfo['profissaoMae']+"<br>"+
+                                              "RG da Mãe:  "+fHelper.maeInfo['rgMae']+"<br>"+
+                                              "CPF da Mãe:  "+fHelper.maeInfo['cpfMae']+"<br>"+
+                                              "Endereço:  "+fHelper.maeInfo['enderecoMae']+"<br>"+
+                                              "Número da Casa:  "+fHelper.maeInfo['numeroCasaMae']+"<br>"+
+                                              "Bairro da Mãe:  "+fHelper.maeInfo['bairroMae']+"<br>"+
+                                              "Cidade da Mãe:  "+fHelper.maeInfo['cidadeMae']+"<br>"+
+
+                                              "<br>Dados do Pai<br>"+
+                                              "Nome do Pai:  "+_cNomePai.text+"<br>"+
+                                              "Apelido do Pai:  "+_cApelidoPai.text+"<br>"+
+                                              "Nacionalidade:  "+_cNacionalidadePai.text+"<br>"+
+                                              "Estado Civil do Pai:  "+_cEstadoCivilPai.text+"<br>"+
+                                              "Profissão do Pai:  "+_cProfissaoPai.text+"<br>"+
+                                              "RG do Pai:  "+_cRGPai.text+"<br>"+
+                                              "CPF do Pai:  "+_cCPFPai.text+"<br>"+
+                                              "Endereço:  "+_cEnderecoPai.text+"<br>"+
+                                              "Número da Casa:  "+_cNumeroCasaPai.text+"<br>"+
+                                              "Ponto de Referência:  "+_cPontoReferenciaPai.text+"<br>"+
+                                              "Bairro Pai:  "+_cPontoReferenciaPai.text+"<br>"+
+                                              "Cidade Pai:  "+_cCidadePai.text+"<br>"
+                                              //
+                                          );
 //
                                           Navigator.pop(context);
                                           Navigator.push(
